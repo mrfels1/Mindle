@@ -9,10 +9,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mindle.databinding.ActivityMainBinding;
@@ -102,16 +104,24 @@ public class MainActivity extends AppCompatActivity {
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-                binding.responseTV.setText(""+error.networkResponse);
+                Toast.makeText(MainActivity.this, "Fail to get response = " + error.networkResponse.statusCode, Toast.LENGTH_SHORT).show();
+                binding.responseTV.setText(""+error.networkResponse.allHeaders);
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("User-Agent", "Mindle/1.0");
+                params.put("Content-Type", "application/json");
                 params.put("email", email);
                 params.put("password", password);
                 params.put("X-CSRF-TOKEN",csrf);
+
                 return params;
             }
         };
@@ -125,10 +135,9 @@ public class MainActivity extends AppCompatActivity {
     private void getCsrf(String email, String password, SharedPreferences.Editor editor) {
         String url = "http://192.168.1.65:8000/csrf";
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
+        Request request = new Request(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
                 binding.responseTV.setText(response);
                 editor.putString("CSRF",response);
                 editor.commit();
@@ -146,11 +155,26 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 return params;
             }
+
+            @Override
+            protected Response parseNetworkResponse(NetworkResponse response) {
+                try {
+                    String json = new String(response.data,
+                            HttpHeaderParser.parseCharset(response.headers));
+                    return Response.success(gson.fromJson(json, clazz),
+                            HttpHeaderParser.parseCacheHeaders(response));
+                }
+            }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("Accept", "*/*");
+                params.put("Host", "Mindle/1.0");
                 params.put("User-Agent", "Mindle/1.0");
                 params.put("Content-Type", "application/json");
+                params.put("email", email);
+                params.put("password", password);
 
                 return params;
             }
