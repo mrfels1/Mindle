@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_light"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/sumDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+
+        />
+
+    <EditText
+        android:id="@+id/numberInput"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@id/sumDisplay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:hint="Введите число"
+        android:inputType="numberDecimal" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_button"
+        android:layout_below="@+id/numberInput"
+        android:text="Добавить"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textColor="@color/LightGrey"
+        android:background="@drawable/button_style"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/remButton"
+        android:layout_below="@+id/add_button"
+        android:text="Очистить"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textColor="@color/LightGrey"
+        android:background="@drawable/button_style"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextActivity"
+        android:layout_below="@+id/remButton"
+        android:text="параметры"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:textColor="@color/LightGrey"
+        android:background="@drawable/button_style"/>
+
+
+
+</RelativeLayout>

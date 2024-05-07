@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_activity_secomd">SecomdActivity</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="about_the_program">
+    \n это программа для отслеживания своих финансов
+    </string>
+
+    <string name="Users_instructions">
+    \n вводите свои траты, и отслеживайте их
+    </string>
+
+    <string name="About_the_author">
+    \n Тринеев Павел Сергеевич
+    \n ИКБО-13-22
+    \n Год разработки приложение: 2024
+    \n Почта: M.M4p@ya.ru
+    </string>
+</resources>
