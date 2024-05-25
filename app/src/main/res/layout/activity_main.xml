@@ -11,12 +11,15 @@
         android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Вход"
-        app:layout_constraintVertical_bias="0.057"
-        android:textStyle="bold"
-        android:textSize="35dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:layout_margin="50dp"/>
+        android:text="Вход"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintVertical_bias="0.057" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email"
@@ -87,25 +90,6 @@
         android:layout_below="@+id/regbtn"
         android:layout_centerHorizontal="true"
         />
-
-    <ScrollView
-        android:layout_width="381dp"
-        android:layout_height="225dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="23dp">
-
-        <TextView
-            android:id="@+id/responseTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="20dp"
-            android:text="TextView"
-            android:textSize="20sp" />
-    </ScrollView>
 
 
 </RelativeLayout>

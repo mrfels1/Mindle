@@ -47,5 +47,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.android.volley:volley-cronet:1.2.1")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.android.volley:volley:1.2.1")
+    implementation ("org.apache.httpcomponents:httpclient-android:4.3.5.1")
 
 }
