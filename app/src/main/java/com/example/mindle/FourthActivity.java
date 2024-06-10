@@ -11,15 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mindle.databinding.ActivityFourthBinding;
 import com.example.mindle.models.ListAdapter;
-import com.example.mindle.models.ListData;
 
 import java.util.ArrayList;
 
 public class FourthActivity extends AppCompatActivity {
 
     ListAdapter listAdapter;
-    ArrayList<ListData> dataArrayList = new ArrayList<>();
-    ListData listData;
+    //ArrayList<ListData> dataArrayList = new ArrayList<>();
+    //ListData listData;
 
     ActivityFourthBinding binding;
 
@@ -39,13 +38,13 @@ public class FourthActivity extends AppCompatActivity {
         int[] image1 = {R.drawable.icon2, R.drawable.icon_monopolia,R.drawable.iconc1};
 
 
-        for (int i =0; i < image.length; i++){
-            listData = new ListData(parameters[i], image[i]);
-            dataArrayList.add(listData);
-        }
+        //for (int i =0; i < image.length; i++){
+        //    listData = new ListData(parameters[i], image[i]);
+        //    dataArrayList.add(listData);
+        //}
 
 
-        listAdapter = new ListAdapter(FourthActivity.this, dataArrayList);
+        //listAdapter = new ListAdapter(FourthActivity.this, dataArrayList);
         binding.lv.setAdapter(listAdapter);
         binding.lv.setClickable(true);
 

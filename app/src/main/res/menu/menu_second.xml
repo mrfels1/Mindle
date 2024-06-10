@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_search_black_24dp"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:title="Поиск поста"/>
+    <item
+        android:id="@+id/programm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="О программе" />
+    <item
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Об авторе" />
+    <item
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Обновить"
+        android:icon="@drawable/icons8_refresh"
+        app:showAsAction="ifRoom|collapseActionView"/>
+</menu>

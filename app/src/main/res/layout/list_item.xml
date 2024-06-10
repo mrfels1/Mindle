@@ -2,43 +2,129 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
     android:layout_marginStart="12dp"
     android:layout_marginEnd="12dp"
-    android:layout_marginVertical="10dp"
-    android:layout_marginHorizontal="10dp"
     app:cardCornerRadius="20dp"
-    app:cardElevation="8dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    
+    app:cardElevation="8dp">
+
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="392dp"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:background="@color/purplebright"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/listImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/listImage"
-            android:src="@drawable/baseline_bubble_chart_24"
-            android:scaleType="centerCrop"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
-        
-        
+            android:layout_marginBottom="10dp"
+            android:background="@color/green"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_bubble_chart_24"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+
         <TextView
-            android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:id="@+id/listName"
-            android:text="Name"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/listImage"/>
-        
+            android:id="@+id/postAuthorTV"
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@+id/listImage"
+            android:text="author"
+            android:textColor="@color/LightGrey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/postTextTV"
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="81dp"
+            android:text="post text"
+            android:textColor="@color/LightGrey" />
+
+        <ImageButton
+            android:id="@+id/upvoteBtn"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_below="@+id/postTextTV"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="13dp"
+            android:background="@color/unclickedgreen"
+            app:srcCompat="@android:drawable/arrow_up_float" />
+
+        <ImageButton
+            android:id="@+id/downvoteBtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_below="@+id/postTextTV"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="13dp"
+            android:layout_toEndOf="@+id/upvoteCounterTV"
+            android:background="@color/unclickedgreen"
+            app:srcCompat="@android:drawable/arrow_down_float" />
+
+        <TextView
+            android:id="@+id/upvoteCounterTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/postTextTV"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@+id/upvoteBtn"
+            android:text="0"
+            android:textColor="@color/LightGrey" />
+
+        <ImageButton
+            android:id="@+id/commentBtn"
+            android:layout_width="46dp"
+            android:layout_height="36dp"
+            android:layout_below="@+id/postTextTV"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="97dp"
+            android:background="@color/green"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
+
+        <TextView
+            android:id="@+id/postTitleTV"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/postAuthorTV"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/listImage"
+            android:text="post title"
+            android:textColor="@color/LightGrey"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/delbtn"
+            android:layout_width="36dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="9dp"
+            android:background="@color/green"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/btn_dialog" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,6 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         Log.d(TAG, "Activity created");
         binding.regbtnReg.setOnClickListener(v -> onRegisterClick());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
     }
     private void onRegisterClick(){
         String email = emailField.getText().toString();
@@ -54,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Имя/Почта/Пароль не могут быть пустыми", Toast.LENGTH_LONG).show();
             return;
         }
-        String url = "http://192.168.1.65:8080/api/register";
+        String url = "http://127.0.0.1:8000/api/register";
         Map<String, String> headers = new HashMap<>();
         headers.put("Accept", "application/json");
         headers.put("name", name);

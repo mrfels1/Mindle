@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         binding.password.setText(sharedPref.getString("password",""));
 
         binding.regbtn.setOnClickListener(v -> onRegisterClick());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
     }
 
     private void onLoginClick() {
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
 
 
-        String url = "http://192.168.1.65:8080/api/token";
+        String url = "http://192.168.1.64:80/api/token";
 
         int random = ThreadLocalRandom.current().nextInt(100000, 999999);
 
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if(response.contains("Error\":\"No such credentials")){
                     Toast.makeText(MainActivity.this, "Неправильный логин/пароль.", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 editor.putString("token", response);
                 editor.putString("email", binding.email.getText().toString());
@@ -99,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // handle the error here
+                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+
             }
         }) {
             @Override
@@ -107,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 return headers;
             }
         };
-
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                20000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(this).add(request);
     }
 
