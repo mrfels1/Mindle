@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundpurple"
     tools:context=".RegisterActivity">
 
     <com.google.android.material.textfield.TextInputEditText
@@ -14,11 +15,15 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="30dp"
-        android:background="#30808080"
+        android:background="@color/green"
         android:drawableLeft="@drawable/baseline_attribution_24"
         android:drawablePadding="20dp"
         android:hint="Имя пользователя"
         android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/green"
+        android:textColorHint="@color/LightGrey"
+        android:textColorLink="@color/green"
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -29,11 +34,13 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="36dp"
-        android:background="#30808080"
+        android:background="@color/green"
         android:drawableLeft="@drawable/baseline_alternate_email_24"
         android:drawablePadding="20dp"
         android:hint="Адрес эл. почты"
         android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/LightGrey"
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -44,11 +51,13 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="82dp"
-        android:background="#30808080"
+        android:background="@color/green"
         android:drawableLeft="@drawable/twotone_apps_24"
         android:drawablePadding="20dp"
         android:hint="Пароль"
         android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/LightGrey"
         android:textSize="20sp" />
 
     <com.google.android.material.button.MaterialButton
@@ -62,8 +71,14 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="197dp"
-        android:backgroundTint="@color/cardview_dark_background"
+        android:background="@color/green"
+        android:backgroundTint="@color/green"
         android:text="Регистрация"
-        android:textSize="20sp" />
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/green"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/green"
+        android:textSize="20sp"
+        app:strokeColor="@color/green" />
 
 </RelativeLayout>

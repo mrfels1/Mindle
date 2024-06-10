@@ -4,6 +4,8 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/backgroundpurple</item>
+    </style>
     <style name="Theme.Mindle" parent="Base.Theme.Mindle" />
 </resources>

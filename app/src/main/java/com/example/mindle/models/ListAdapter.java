@@ -36,7 +36,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mindle.API.Post;
 import com.example.mindle.API.apiCaller;
-import com.example.mindle.DetailedActivity;
 import com.example.mindle.R;
 import com.example.mindle.SecondActivity;
 import com.example.mindle.databinding.ActivityMainBinding;
