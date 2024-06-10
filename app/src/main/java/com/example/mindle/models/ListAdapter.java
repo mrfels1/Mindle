@@ -56,7 +56,9 @@ public class ListAdapter extends ArrayAdapter<Post> implements Filterable {
         super(context, R.layout.list_item, postArrayList);
         this.list = postArrayList;
         this.context = context;
+        this.ip = context.getResources().getString(R.string.ip);
     }
+    String ip;
     boolean isliked;
     boolean isdisliked;
     boolean candelete;
@@ -75,7 +77,7 @@ public class ListAdapter extends ArrayAdapter<Post> implements Filterable {
         String token = sharedPref.getString("token", "no token");
         /// check if post is already liked/disliked by user
         String id = Integer.toString(post.id) ;
-        String url = "http://192.168.1.64:80/api/post/" + id + "/userrate";
+        String url = ip+"/api/post/" + id + "/userrate";
         View finalView = view;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -86,7 +88,7 @@ public class ListAdapter extends ArrayAdapter<Post> implements Filterable {
                     isliked = obj.getString("liked").equals("true");
                     isdisliked = obj.getString("disliked").equals("true");
                     candelete = obj.getString("canDelete").equals("true");
-                    Toast.makeText(getContext(), post.title.substring(0,5) + candelete, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), post.title.substring(0,5) + candelete, Toast.LENGTH_LONG).show();
                     if(isliked){
                         ImageButton upvoteBtn = finalView.findViewById(R.id.upvoteBtn);
                         upvoteBtn.setBackgroundColor(Color.GREEN);
@@ -140,7 +142,7 @@ public class ListAdapter extends ArrayAdapter<Post> implements Filterable {
 
         ///get author name
         String author_id = Integer.toString(post.author_id) ;
-        String author_url = "http://192.168.1.64:80/api/user/" + author_id;
+        String author_url = ip+"/api/user/" + author_id;
         StringRequest request2 = new StringRequest(Request.Method.GET, author_url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -179,17 +181,44 @@ public class ListAdapter extends ArrayAdapter<Post> implements Filterable {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ///
+                String id = Integer.toString(post.id) ;
+                String url = ip+"/api/post/" + id + "/delete";
+                StringRequest request = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        deleteBtn.setVisibility(View.GONE);
+                        ListAdapter.this.list.remove(position);
+                        ListAdapter.this.notifyDataSetChanged();
 
-                deleteBtn.setVisibility(View.GONE);
-                ListAdapter.this.list.remove(position);
-                ListAdapter.this.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Delete error: " + error.toString() + error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<String, String>();
+                        headers.put("Authorization", "Bearer " + token);
+                        return headers;
+                    }
+                };
+                request.setRetryPolicy(new DefaultRetryPolicy(
+                        200000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                Volley.newRequestQueue(getContext()).add(request);
+                ///
+
             }
         });
         upvoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id = Integer.toString(post.id) ;
-                String url = "http://192.168.1.64:80/api/post/" + id + "/like";
+                String url = ip+"/api/post/" + id + "/like";
                 StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -243,7 +272,7 @@ public class ListAdapter extends ArrayAdapter<Post> implements Filterable {
             @Override
             public void onClick(View v) {
                 String id = Integer.toString(post.id) ;
-                String url = "http://192.168.1.64:80/api/post/" + id + "/dislike";
+                String url = ip+"/api/post/" + id + "/dislike";
                 StringRequest request = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

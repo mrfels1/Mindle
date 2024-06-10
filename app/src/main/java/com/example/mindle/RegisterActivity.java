@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Имя/Почта/Пароль не могут быть пустыми", Toast.LENGTH_LONG).show();
             return;
         }
-        String url = "http://127.0.0.1:8000/api/register";
+        String url = getResources().getString(R.string.ip)+"/api/posts";
         Map<String, String> headers = new HashMap<>();
         headers.put("Accept", "application/json");
         headers.put("name", name);
@@ -79,6 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RegisterActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+
                 // handle the error here
             }
         }) {

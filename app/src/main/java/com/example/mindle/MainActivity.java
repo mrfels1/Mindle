@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
 
 
-        String url = "http://192.168.1.64:80/api/token";
+        String url = getResources().getString(R.string.ip)+"/api/token";
 
         int random = ThreadLocalRandom.current().nextInt(100000, 999999);
 

@@ -53,7 +53,7 @@ public class SecondActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         Log.d(TAG, "Activity created");
         ///     GET POSTS      ///
-        String url = "http://192.168.1.64:80/api/posts";
+        String url = getResources().getString(R.string.ip)+"/api/posts";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -113,19 +113,6 @@ public class SecondActivity extends AppCompatActivity {
                 listAdapter = new ListAdapter(SecondActivity.this, postArrayList);
                 binding.postList.setAdapter(listAdapter);
                 binding.postList.setClickable(true);
-
-                binding.postList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent intent = new Intent(SecondActivity.this, DetailedActivity.class);
-                        //intent.putExtra("parameters", parameters[i]);
-                        //intent.putExtra("text", text[i]);
-                        //intent.putExtra("image", image1[i]);
-                        startActivity(intent);
-                    }
-                });
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -145,7 +132,8 @@ public class SecondActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SecondActivity.this, CreatePostActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -221,13 +209,11 @@ public class SecondActivity extends AppCompatActivity {
 
     public void updatePosts(){
         postArrayList.clear();
-        binding = ActivitySecondBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         sharedPref = getApplicationContext().getSharedPreferences("My_Preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Log.d(TAG, "updatePosts");
         ///     GET POSTS      ///
-        String url = "http://192.168.1.64:80/api/posts";
+        String url = getResources().getString(R.string.ip)+"/api/posts";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
